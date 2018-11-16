@@ -10,6 +10,7 @@ use PHPStan\Type\Accessory\HasOffsetType;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\BooleanType;
 use PHPStan\Type\IntersectionType;
+use PHPStan\Type\MixedType;
 use PHPStan\Type\NullType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
@@ -90,6 +91,12 @@ final class NodeTypeAnalyzer
             }
 
             return true;
+        }
+
+        if ($nodeType instanceof MixedType) {
+            if ($nodeType->isIterable()->maybe()) {
+
+            }
         }
 
         return $nodeType instanceof ArrayType;
